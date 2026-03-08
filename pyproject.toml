@@ -1,0 +1,44 @@
+[project]
+name = "second-brain"
+version = "0.1.0"
+description = "Personal AI Second Brain with RAG and dual-memory architecture"
+requires-python = ">=3.11"
+
+[tool.poetry]
+packages = [{ include = "second_brain", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+psycopg = { version = "^3.2", extras = ["binary"] }
+pgvector = "^0.3"
+sentence-transformers = "^3.0"
+anthropic = "^0.40"
+pydantic = "^2.10"
+pydantic-settings = "^2.7"
+rich = "^13.9"
+click = "^8.1"
+watchdog = "^6.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3"
+pytest-cov = "^6.0"
+ruff = "^0.15"
+
+[tool.poetry.scripts]
+second-brain = "second_brain.main:cli"
+
+[tool.ruff]
+target-version = "py311"
+src = ["src"]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
